@@ -22,6 +22,10 @@
 		09FBA2FD1897FE900029426A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2DC1897FE8F0029426A /* UIKit.framework */; };
 		09FBA3051897FE900029426A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA3031897FE900029426A /* InfoPlist.strings */; };
 		09FBA3071897FE900029426A /* microphoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FBA3061897FE900029426A /* microphoneTests.m */; };
+		09FBA3111898017B0029426A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA3101898017B0029426A /* AVFoundation.framework */; };
+		09FBA316189A552E0029426A /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA315189A552E0029426A /* 9.png */; };
+		09FBA318189A55570029426A /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA317189A55570029426A /* 6.png */; };
+		09FBA31A189A55780029426A /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA319189A55780029426A /* 3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		09FBA3021897FE900029426A /* microphoneTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "microphoneTests-Info.plist"; sourceTree = "<group>"; };
 		09FBA3041897FE900029426A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09FBA3061897FE900029426A /* microphoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = microphoneTests.m; sourceTree = "<group>"; };
+		09FBA3101898017B0029426A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		09FBA315189A552E0029426A /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		09FBA317189A55570029426A /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		09FBA319189A55780029426A /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09FBA3111898017B0029426A /* AVFoundation.framework in Frameworks */,
 				09FBA2DB1897FE8F0029426A /* CoreGraphics.framework in Frameworks */,
 				09FBA2DD1897FE8F0029426A /* UIKit.framework in Frameworks */,
 				09FBA2D91897FE8F0029426A /* Foundation.framework in Frameworks */,
@@ -103,6 +112,7 @@
 		09FBA2D71897FE8F0029426A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09FBA3101898017B0029426A /* AVFoundation.framework */,
 				09FBA2D81897FE8F0029426A /* Foundation.framework */,
 				09FBA2DA1897FE8F0029426A /* CoreGraphics.framework */,
 				09FBA2DC1897FE8F0029426A /* UIKit.framework */,
@@ -121,6 +131,7 @@
 				09FBA2F01897FE8F0029426A /* MIViewController.h */,
 				09FBA2F11897FE8F0029426A /* MIViewController.m */,
 				09FBA2F31897FE8F0029426A /* Images.xcassets */,
+				09FBA312189A54E60029426A /* media */,
 				09FBA2DF1897FE8F0029426A /* Supporting Files */,
 			);
 			path = microphone;
@@ -153,6 +164,16 @@
 				09FBA3031897FE900029426A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		09FBA312189A54E60029426A /* media */ = {
+			isa = PBXGroup;
+			children = (
+				09FBA317189A55570029426A /* 6.png */,
+				09FBA319189A55780029426A /* 3.png */,
+				09FBA315189A552E0029426A /* 9.png */,
+			);
+			name = media;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,9 +253,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09FBA318189A55570029426A /* 6.png in Resources */,
 				09FBA2EF1897FE8F0029426A /* Main_iPad.storyboard in Resources */,
 				09FBA2F41897FE8F0029426A /* Images.xcassets in Resources */,
 				09FBA2EC1897FE8F0029426A /* Main_iPhone.storyboard in Resources */,
+				09FBA316189A552E0029426A /* 9.png in Resources */,
+				09FBA31A189A55780029426A /* 3.png in Resources */,
 				09FBA2E31897FE8F0029426A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

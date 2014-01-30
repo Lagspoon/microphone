@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface MIViewController : UIViewController
+@interface MIViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+
 
 @end
