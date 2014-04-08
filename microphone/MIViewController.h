@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "MIMicrophoneUI.h"
 
-@interface MIViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface MIViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, microphoneDelegate>
 
-
+@property (strong, nonatomic) NSData *dataSoundRecorded;
 @end

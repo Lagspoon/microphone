@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		093C131818DB38100087B17F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C131618DB38100087B17F /* Main.storyboard */; };
+		093C131A18DB3D8D0087B17F /* buttonPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C131918DB3D8D0087B17F /* buttonPlay.png */; };
+		093C80B518E99D1F009A4A52 /* microphone128.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80B418E99D1F009A4A52 /* microphone128.png */; };
+		093C80B818E9A009009A4A52 /* MIMicrophoneUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 093C80B718E9A009009A4A52 /* MIMicrophoneUI.m */; };
+		093C80BA18EB666B009A4A52 /* microphone64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80B918EB666B009A4A52 /* microphone64.png */; };
+		093C80BD18EB6681009A4A52 /* buttonRecord64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80BB18EB6681009A4A52 /* buttonRecord64.png */; };
+		093C80BE18EB6681009A4A52 /* buttonStop64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80BC18EB6681009A4A52 /* buttonStop64.png */; };
+		09C9738718E1CA35009746A6 /* FDSoundActivatedRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C9738618E1CA35009746A6 /* FDSoundActivatedRecorder.m */; };
 		09FBA2D91897FE8F0029426A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2D81897FE8F0029426A /* Foundation.framework */; };
 		09FBA2DB1897FE8F0029426A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2DA1897FE8F0029426A /* CoreGraphics.framework */; };
 		09FBA2DD1897FE8F0029426A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2DC1897FE8F0029426A /* UIKit.framework */; };
@@ -22,9 +29,6 @@
 		09FBA3051897FE900029426A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA3031897FE900029426A /* InfoPlist.strings */; };
 		09FBA3071897FE900029426A /* microphoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FBA3061897FE900029426A /* microphoneTests.m */; };
 		09FBA3111898017B0029426A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA3101898017B0029426A /* AVFoundation.framework */; };
-		09FBA316189A552E0029426A /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA315189A552E0029426A /* 9.png */; };
-		09FBA318189A55570029426A /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA317189A55570029426A /* 6.png */; };
-		09FBA31A189A55780029426A /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 09FBA319189A55780029426A /* 3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,15 @@
 
 /* Begin PBXFileReference section */
 		093C131718DB38100087B17F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		093C131918DB3D8D0087B17F /* buttonPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonPlay.png; sourceTree = "<group>"; };
+		093C80B418E99D1F009A4A52 /* microphone128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microphone128.png; path = ../../../Design/microphone128.png; sourceTree = "<group>"; };
+		093C80B618E9A009009A4A52 /* MIMicrophoneUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMicrophoneUI.h; sourceTree = "<group>"; };
+		093C80B718E9A009009A4A52 /* MIMicrophoneUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMicrophoneUI.m; sourceTree = "<group>"; };
+		093C80B918EB666B009A4A52 /* microphone64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microphone64.png; path = ../../../Design/microphone64.png; sourceTree = "<group>"; };
+		093C80BB18EB6681009A4A52 /* buttonRecord64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonRecord64.png; path = ../../../Design/buttonRecord64.png; sourceTree = "<group>"; };
+		093C80BC18EB6681009A4A52 /* buttonStop64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonStop64.png; path = ../../../Design/buttonStop64.png; sourceTree = "<group>"; };
+		09C9738518E1CA35009746A6 /* FDSoundActivatedRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSoundActivatedRecorder.h; sourceTree = "<group>"; };
+		09C9738618E1CA35009746A6 /* FDSoundActivatedRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSoundActivatedRecorder.m; sourceTree = "<group>"; };
 		09FBA2D51897FE8F0029426A /* microphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = microphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FBA2D81897FE8F0029426A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		09FBA2DA1897FE8F0029426A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,9 +71,6 @@
 		09FBA3041897FE900029426A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09FBA3061897FE900029426A /* microphoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = microphoneTests.m; sourceTree = "<group>"; };
 		09FBA3101898017B0029426A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		09FBA315189A552E0029426A /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
-		09FBA317189A55570029426A /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
-		09FBA319189A55780029426A /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09C9738818E1CCC8009746A6 /* check Out */ = {
+			isa = PBXGroup;
+			children = (
+				09C9738518E1CA35009746A6 /* FDSoundActivatedRecorder.h */,
+				09C9738618E1CA35009746A6 /* FDSoundActivatedRecorder.m */,
+			);
+			name = "check Out";
+			sourceTree = "<group>";
+		};
 		09FBA2CC1897FE8F0029426A = {
 			isa = PBXGroup;
 			children = (
@@ -122,11 +141,14 @@
 		09FBA2DE1897FE8F0029426A /* microphone */ = {
 			isa = PBXGroup;
 			children = (
+				09C9738818E1CCC8009746A6 /* check Out */,
 				09FBA2E71897FE8F0029426A /* MIAppDelegate.h */,
 				09FBA2E81897FE8F0029426A /* MIAppDelegate.m */,
 				093C131618DB38100087B17F /* Main.storyboard */,
 				09FBA2F01897FE8F0029426A /* MIViewController.h */,
 				09FBA2F11897FE8F0029426A /* MIViewController.m */,
+				093C80B618E9A009009A4A52 /* MIMicrophoneUI.h */,
+				093C80B718E9A009009A4A52 /* MIMicrophoneUI.m */,
 				09FBA2F31897FE8F0029426A /* Images.xcassets */,
 				09FBA312189A54E60029426A /* media */,
 				09FBA2DF1897FE8F0029426A /* Supporting Files */,
@@ -166,9 +188,11 @@
 		09FBA312189A54E60029426A /* media */ = {
 			isa = PBXGroup;
 			children = (
-				09FBA317189A55570029426A /* 6.png */,
-				09FBA319189A55780029426A /* 3.png */,
-				09FBA315189A552E0029426A /* 9.png */,
+				093C80B418E99D1F009A4A52 /* microphone128.png */,
+				093C80B918EB666B009A4A52 /* microphone64.png */,
+				093C80BB18EB6681009A4A52 /* buttonRecord64.png */,
+				093C80BC18EB6681009A4A52 /* buttonStop64.png */,
+				093C131918DB3D8D0087B17F /* buttonPlay.png */,
 			);
 			name = media;
 			sourceTree = "<group>";
@@ -218,7 +242,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MI;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Olivier Delecueillerie";
 				TargetAttributes = {
 					09FBA2F81897FE900029426A = {
@@ -251,10 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				093C131818DB38100087B17F /* Main.storyboard in Resources */,
-				09FBA318189A55570029426A /* 6.png in Resources */,
+				093C80BA18EB666B009A4A52 /* microphone64.png in Resources */,
+				093C80BE18EB6681009A4A52 /* buttonStop64.png in Resources */,
+				093C131A18DB3D8D0087B17F /* buttonPlay.png in Resources */,
 				09FBA2F41897FE8F0029426A /* Images.xcassets in Resources */,
-				09FBA316189A552E0029426A /* 9.png in Resources */,
-				09FBA31A189A55780029426A /* 3.png in Resources */,
+				093C80B518E99D1F009A4A52 /* microphone128.png in Resources */,
+				093C80BD18EB6681009A4A52 /* buttonRecord64.png in Resources */,
 				09FBA2E31897FE8F0029426A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +302,8 @@
 			files = (
 				09FBA2E91897FE8F0029426A /* MIAppDelegate.m in Sources */,
 				09FBA2F21897FE8F0029426A /* MIViewController.m in Sources */,
+				093C80B818E9A009009A4A52 /* MIMicrophoneUI.m in Sources */,
+				09C9738718E1CA35009746A6 /* FDSoundActivatedRecorder.m in Sources */,
 				09FBA2E51897FE8F0029426A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +358,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -370,7 +397,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -429,7 +455,6 @@
 		09FBA30E1897FE900029426A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/microphone.app/microphone";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -452,7 +477,6 @@
 		09FBA30F1897FE900029426A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/microphone.app/microphone";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
