@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		093C131818DB38100087B17F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C131618DB38100087B17F /* Main.storyboard */; };
 		093C131A18DB3D8D0087B17F /* buttonPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C131918DB3D8D0087B17F /* buttonPlay.png */; };
-		093C80B518E99D1F009A4A52 /* microphone128.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80B418E99D1F009A4A52 /* microphone128.png */; };
 		093C80B818E9A009009A4A52 /* MIMicrophoneUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 093C80B718E9A009009A4A52 /* MIMicrophoneUI.m */; };
-		093C80BA18EB666B009A4A52 /* microphone64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80B918EB666B009A4A52 /* microphone64.png */; };
-		093C80BD18EB6681009A4A52 /* buttonRecord64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80BB18EB6681009A4A52 /* buttonRecord64.png */; };
-		093C80BE18EB6681009A4A52 /* buttonStop64.png in Resources */ = {isa = PBXBuildFile; fileRef = 093C80BC18EB6681009A4A52 /* buttonStop64.png */; };
+		0947543118F41EBD00FBBAFC /* buttonRecord64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947542D18F41EBD00FBBAFC /* buttonRecord64.png */; };
+		0947543218F41EBD00FBBAFC /* buttonStop64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947542E18F41EBD00FBBAFC /* buttonStop64.png */; };
+		0947543318F41EBD00FBBAFC /* microphone64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947542F18F41EBD00FBBAFC /* microphone64.png */; };
+		0947543418F41EBD00FBBAFC /* microphone128.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543018F41EBD00FBBAFC /* microphone128.png */; };
 		09C9738718E1CA35009746A6 /* FDSoundActivatedRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C9738618E1CA35009746A6 /* FDSoundActivatedRecorder.m */; };
 		09FBA2D91897FE8F0029426A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2D81897FE8F0029426A /* Foundation.framework */; };
 		09FBA2DB1897FE8F0029426A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FBA2DA1897FE8F0029426A /* CoreGraphics.framework */; };
@@ -44,12 +44,12 @@
 /* Begin PBXFileReference section */
 		093C131718DB38100087B17F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		093C131918DB3D8D0087B17F /* buttonPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonPlay.png; sourceTree = "<group>"; };
-		093C80B418E99D1F009A4A52 /* microphone128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microphone128.png; path = ../../../Design/microphone128.png; sourceTree = "<group>"; };
 		093C80B618E9A009009A4A52 /* MIMicrophoneUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMicrophoneUI.h; sourceTree = "<group>"; };
 		093C80B718E9A009009A4A52 /* MIMicrophoneUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMicrophoneUI.m; sourceTree = "<group>"; };
-		093C80B918EB666B009A4A52 /* microphone64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microphone64.png; path = ../../../Design/microphone64.png; sourceTree = "<group>"; };
-		093C80BB18EB6681009A4A52 /* buttonRecord64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonRecord64.png; path = ../../../Design/buttonRecord64.png; sourceTree = "<group>"; };
-		093C80BC18EB6681009A4A52 /* buttonStop64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonStop64.png; path = ../../../Design/buttonStop64.png; sourceTree = "<group>"; };
+		0947542D18F41EBD00FBBAFC /* buttonRecord64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonRecord64.png; sourceTree = "<group>"; };
+		0947542E18F41EBD00FBBAFC /* buttonStop64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonStop64.png; sourceTree = "<group>"; };
+		0947542F18F41EBD00FBBAFC /* microphone64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microphone64.png; sourceTree = "<group>"; };
+		0947543018F41EBD00FBBAFC /* microphone128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microphone128.png; sourceTree = "<group>"; };
 		09C9738518E1CA35009746A6 /* FDSoundActivatedRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSoundActivatedRecorder.h; sourceTree = "<group>"; };
 		09C9738618E1CA35009746A6 /* FDSoundActivatedRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSoundActivatedRecorder.m; sourceTree = "<group>"; };
 		09FBA2D51897FE8F0029426A /* microphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = microphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,10 +188,10 @@
 		09FBA312189A54E60029426A /* media */ = {
 			isa = PBXGroup;
 			children = (
-				093C80B418E99D1F009A4A52 /* microphone128.png */,
-				093C80B918EB666B009A4A52 /* microphone64.png */,
-				093C80BB18EB6681009A4A52 /* buttonRecord64.png */,
-				093C80BC18EB6681009A4A52 /* buttonStop64.png */,
+				0947542D18F41EBD00FBBAFC /* buttonRecord64.png */,
+				0947542E18F41EBD00FBBAFC /* buttonStop64.png */,
+				0947542F18F41EBD00FBBAFC /* microphone64.png */,
+				0947543018F41EBD00FBBAFC /* microphone128.png */,
 				093C131918DB3D8D0087B17F /* buttonPlay.png */,
 			);
 			name = media;
@@ -275,13 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				093C131818DB38100087B17F /* Main.storyboard in Resources */,
-				093C80BA18EB666B009A4A52 /* microphone64.png in Resources */,
-				093C80BE18EB6681009A4A52 /* buttonStop64.png in Resources */,
+				0947543118F41EBD00FBBAFC /* buttonRecord64.png in Resources */,
 				093C131A18DB3D8D0087B17F /* buttonPlay.png in Resources */,
+				0947543418F41EBD00FBBAFC /* microphone128.png in Resources */,
+				0947543218F41EBD00FBBAFC /* buttonStop64.png in Resources */,
 				09FBA2F41897FE8F0029426A /* Images.xcassets in Resources */,
-				093C80B518E99D1F009A4A52 /* microphone128.png in Resources */,
-				093C80BD18EB6681009A4A52 /* buttonRecord64.png in Resources */,
 				09FBA2E31897FE8F0029426A /* InfoPlist.strings in Resources */,
+				0947543318F41EBD00FBBAFC /* microphone64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
