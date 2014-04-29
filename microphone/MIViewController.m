@@ -21,10 +21,8 @@ enum mode
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UISwitch *switchControl;
-//@property (weak, nonatomic) IBOutlet F3BarGauge *barGauge;
 @property (nonatomic) enum mode mode;
 @property (strong, nonatomic) AVAudioPlayer *player;
-//@property (strong, nonatomic) AVAudioRecorder *recorder;
 @end
 
 @implementation MIViewController

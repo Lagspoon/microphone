@@ -10,7 +10,6 @@
 
 @interface MIMicrophoneUI ()
 @property (strong, nonatomic) FDSoundActivatedRecorder *activatedRecorder;
-//@property (weak, nonatomic) IBOutlet F3BarGauge *barGauge;
 @property (weak, nonatomic) IBOutlet UIView *viewBackgroundColor;
 @property (weak, nonatomic) IBOutlet UIImageView *viewMicrophoneImage;
 @end
