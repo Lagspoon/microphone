@@ -10,7 +10,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MIMicrophoneUI.h"
 
-@interface MIViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, microphoneDelegate>
 
+@protocol microphonePlayerDelegate <NSObject>
+@required
+@property (nonatomic, strong) NSData *dataSoundRecorded;
+@optional
+- (void) microphonePlayerDidFinishRecording;
+@end
+
+
+@interface MIViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate,microphoneRecorderDelegate>
+
++ (MIViewController *) instantiateInitialViewControllerWithMicrophoneDelegate:(id)delegate;
+@property (strong, nonatomic) UIViewController <microphonePlayerDelegate> *delegate;
 @property (strong, nonatomic) NSData *dataSoundRecorded;
+
 @end

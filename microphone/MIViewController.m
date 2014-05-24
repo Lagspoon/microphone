@@ -5,6 +5,8 @@
 //  Created by Olivier Delecueillerie on 28/01/2014.
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
+//
+//
 
 #import "MIViewController.h"
 #import "MIMicrophoneUI.h"
@@ -16,20 +18,24 @@ enum mode
     play = 0,
     stop = 1,
     record = 2,
-    //stopRecord = 3,
 };
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UISwitch *switchControl;
+
 @property (nonatomic) enum mode mode;
 @property (strong, nonatomic) AVAudioPlayer *player;
 @end
 
 @implementation MIViewController
 
-//typedef enum mode mode;
 
-//Lazy instantiation
++ (MIViewController *) instantiateInitialViewControllerWithMicrophoneDelegate:(id)delegate {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MIViewController *viewController = [storyboard instantiateInitialViewController];
+    viewController.delegate = delegate;
+    return viewController;
+}
 
 
 - (IBAction)switchEditing:(UISwitch *)sender {
@@ -39,11 +45,9 @@ enum mode
 //setter of the editing property
 - (void) setEditing:(BOOL)editing {
     if (editing) {
-        //self.barGauge.hidden = NO;
         [self buttonState:record];
     }
     else {
-        //self.barGauge.hidden  = YES;
         [self buttonState:play];
     }
 }
@@ -58,8 +62,11 @@ enum mode
 {
     [super viewDidLoad];
 
+    //switch controle is used for dev and test purpose only
+    self.switchControl.hidden = YES;
+    
     //init the default state of the button
-    [self buttonState:play];
+    [self updateButton:self.delegate.editing];
 
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -73,6 +80,14 @@ enum mode
 // CONTROL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) updateButton:(BOOL) editing {
+    if (editing) {
+        [self buttonState:record];
+    } else {
+        [self buttonState:play];
+    }
+}
+
 - (void) buttonState:(NSUInteger) state {
     [self.button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
     switch (state) {
@@ -108,7 +123,6 @@ enum mode
 //open MIMicrophone
     MIMicrophoneUI *microphoneVC = (MIMicrophoneUI *) [self.storyboard instantiateViewControllerWithIdentifier:@"microphone"];
     microphoneVC.delegate = self;
-    //microphoneVC.dataNewSound = self.sound;
     [self presentViewController:microphoneVC animated:YES completion:^{
         //code
     }];
@@ -122,7 +136,7 @@ enum mode
 - (IBAction)controlPlay:(id)sender {
     //self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.activatedRecorder.trimmedRecordUrl error:nil];
     NSError *error;
-    self.player = [[AVAudioPlayer alloc] initWithData:self.dataSoundRecorded error:&error];
+    self.player = [[AVAudioPlayer alloc] initWithData:self.delegate.dataSoundRecorded error:&error];
     [self.player setDelegate:self];
     [self.player play];
     [self buttonState:stop];
@@ -130,11 +144,15 @@ enum mode
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// AVAudioRecorder delegate
+// AVAudio Player & Recorder delegate
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+- (void) microphoneRecorderDidFinishRecording {
+    self.delegate.dataSoundRecorded = self.dataSoundRecorded;
+    if ([self.delegate respondsToSelector:@selector(microphonePlayerDidFinishRecording)]) {
+        [self.delegate microphonePlayerDidFinishRecording];
+    }
 
 }
 

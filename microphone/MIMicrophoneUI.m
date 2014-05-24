@@ -42,18 +42,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void) soundActivatedRecorderDidStopRecording:(FDSoundActivatedRecorder *)recorder andSavedSound:(BOOL)didSave {
-//    self.switchControl.on = false;
-//    [self buttonState:play];
     //put the file in NSData object
     self.delegate.dataSoundRecorded = [NSData dataWithContentsOfURL:self.activatedRecorder.trimmedRecordUrl];
+    [self.delegate microphoneRecorderDidFinishRecording];
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
         //<#code#>
     }];
 }
 
-- (void) soundActivatedRecorderMicrophoneLevelGauge:(float)microphoneLevel {
-    //self.barGauge.value = microphoneLevel;
-    
+- (void) soundActivatedRecorderMicrophoneLevelGauge:(float)microphoneLevel {    
     self.viewBackgroundColor.frame = CGRectMake(self.viewMicrophoneImage.frame.origin.x,
                                                 (self.viewMicrophoneImage.frame.origin.y)+((1-microphoneLevel)*self.viewMicrophoneImage.frame.size.height),
                                                 self.viewMicrophoneImage.frame.size.width,

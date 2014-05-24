@@ -10,14 +10,16 @@
 #import <UIKit/UIKit.h>
 #import "FDSoundActivatedRecorder.h"
 
-@protocol microphoneDelegate <NSObject>
-@optional
+@protocol microphoneRecorderDelegate <NSObject>
+@required
 @property (nonatomic, strong) NSData *dataSoundRecorded;
+@optional
+- (void) microphoneRecorderDidFinishRecording;
 
 @end
 
-@interface MIMicrophoneUI : UIViewController <FDSoundActivatedRecorderDelegate>
 
-//@property (strong, nonatomic) NSData *dataNewSound;
-@property (strong, nonatomic) id <microphoneDelegate> delegate;
+@interface MIMicrophoneUI : UIViewController <FDSoundActivatedRecorderDelegate>
+@property (strong, nonatomic) id <microphoneRecorderDelegate> delegate;
+
 @end

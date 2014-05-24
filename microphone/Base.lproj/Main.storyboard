@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvI-IC-SZz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvI-IC-SZz">
                                 <rect key="frame" x="18" y="18" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="buttonPlay.png">
@@ -31,7 +31,7 @@
                                 </connections>
                             </switch>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GwO-i5-PXR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="51" id="1qM-Eb-XbX"/>
                             <constraint firstAttribute="centerX" secondItem="KvI-IC-SZz" secondAttribute="centerX" id="2XC-rK-ooV"/>
@@ -43,7 +43,7 @@
                     <size key="freeformSize" width="100" height="100"/>
                     <connections>
                         <outlet property="button" destination="KvI-IC-SZz" id="Q1x-fr-4SM"/>
-                        <outlet property="switchControl" destination="GwO-i5-PXR" id="Pm2-HW-wB3"/>
+                        <outlet property="switchControl" destination="GwO-i5-PXR" id="g7R-87-e6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
