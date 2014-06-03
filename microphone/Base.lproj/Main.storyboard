@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,12 +13,13 @@
                         <viewControllerLayoutGuide type="bottom" id="zoI-9k-XaT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvI-IC-SZz">
-                                <rect key="frame" x="18" y="18" width="64" height="64"/>
+                                <rect key="frame" x="118" y="118" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" image="buttonPlay.png">
                                     <color key="titleShadowColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -32,21 +33,38 @@
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="GwO-i5-PXR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="51" id="1qM-Eb-XbX"/>
                             <constraint firstAttribute="centerX" secondItem="KvI-IC-SZz" secondAttribute="centerX" id="2XC-rK-ooV"/>
                             <constraint firstItem="GwO-i5-PXR" firstAttribute="top" secondItem="m7W-2h-jhD" secondAttribute="bottom" constant="14" id="frg-6Y-gPl"/>
                             <constraint firstAttribute="centerY" secondItem="KvI-IC-SZz" secondAttribute="centerY" id="vXi-nM-lc0"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="JUY-dY-9tn" appends="YES" id="rV9-4X-prh"/>
+                            <outletCollection property="gestureRecognizers" destination="DiW-iG-Esb" appends="YES" id="2J5-nN-zXK"/>
+                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="100" height="100"/>
+                    <size key="freeformSize" width="300" height="300"/>
                     <connections>
                         <outlet property="button" destination="KvI-IC-SZz" id="Q1x-fr-4SM"/>
                         <outlet property="switchControl" destination="GwO-i5-PXR" id="g7R-87-e6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="DiW-iG-Esb">
+                    <connections>
+                        <action selector="swipeGestureLeft:" destination="vXZ-lx-hvc" id="s2f-75-J56"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="bJF-xm-OZf"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="JUY-dY-9tn">
+                    <connections>
+                        <action selector="swipeGestureRight:" destination="vXZ-lx-hvc" id="R3E-GX-dFu"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="PBD-yx-teT"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
         </scene>
         <!--MicrophoneUI-->

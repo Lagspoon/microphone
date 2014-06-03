@@ -14,6 +14,8 @@
 @protocol microphonePlayerDelegate <NSObject>
 @required
 @property (nonatomic, strong) NSData *dataSoundRecorded;
+- (void) deleteDataSoundRecorded;
+- (void) playOtherSound;
 @optional
 - (void) microphonePlayerDidFinishRecording;
 @end

@@ -18,6 +18,7 @@ enum mode
     play = 0,
     stop = 1,
     record = 2,
+    delete = 3,
 };
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -66,7 +67,11 @@ enum mode
     self.switchControl.hidden = YES;
     
     //init the default state of the button
-    [self updateButton:self.delegate.editing];
+    if (self.delegate.editing) {
+        [self buttonState:record];
+    } else {
+        [self buttonState:play];
+    }
 
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -80,13 +85,7 @@ enum mode
 // CONTROL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) updateButton:(BOOL) editing {
-    if (editing) {
-        [self buttonState:record];
-    } else {
-        [self buttonState:play];
-    }
-}
+
 
 - (void) buttonState:(NSUInteger) state {
     [self.button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
@@ -94,6 +93,7 @@ enum mode
         case 0:
         {
             //play
+            self.mode = play;
             [self.button setImage:[UIImage imageNamed:@"buttonPlay"] forState:UIControlStateNormal];
             [self.button addTarget:self action:@selector(controlPlay:) forControlEvents:UIControlEventTouchUpInside];
             break;
@@ -101,6 +101,7 @@ enum mode
         case 1:
         {
             //stop playing
+            self.mode = stop;
             [self.button setImage:[UIImage imageNamed:@"buttonStop64"] forState:UIControlStateNormal];
             [self.button addTarget:self action:@selector(controlStop:) forControlEvents:UIControlEventTouchUpInside];
             break;
@@ -108,15 +109,55 @@ enum mode
         case 2:
         {
             //activated recorder
+            self.mode = record;
             [self.button setImage:[UIImage imageNamed:@"microphone64"] forState:UIControlStateNormal];
             [self.button addTarget:self action:@selector(controlRecord:) forControlEvents:UIControlEventTouchUpInside];
             break;
         }
+        case 3:
+        {
+            //delete
+            self.mode = delete;
+            [self.button setImage:[UIImage imageNamed:@"buttonBin"] forState:UIControlStateNormal];
+            [self.button addTarget:self action:@selector(deleteRecord:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+            
         default:
         {
             break;
         }
     }
+}
+
+- (void) nextButtonState:(BOOL) next {
+    NSArray * modeAvailaible;
+    
+    if (self.delegate.editing) {
+        modeAvailaible = @[[NSNumber numberWithInt:0], [NSNumber numberWithInt:2], [NSNumber numberWithInt:3]];
+    } else {
+        modeAvailaible = @[[NSNumber numberWithInt:0]];
+    }
+    
+    NSUInteger index = [modeAvailaible indexOfObject:[NSNumber numberWithInt:self.mode]];
+    NSInteger indexNext;
+    if (next) {
+        indexNext = (index +1 ) %[modeAvailaible count];
+        
+    } else {
+        indexNext = index - 1 ;
+        if (indexNext < 0) {
+            indexNext = ([modeAvailaible count]-1);
+        }
+    }
+    NSUInteger newState = [[modeAvailaible objectAtIndex:indexNext] integerValue];
+    
+    [self buttonState:newState];
+}
+
+- (void) deleteRecord:(id) sender {
+    self.dataSoundRecorded = nil;
+    self.delegate.dataSoundRecorded = nil;
 }
 
 - (IBAction)controlRecord:(id)sender {
@@ -135,12 +176,30 @@ enum mode
 
 - (IBAction)controlPlay:(id)sender {
     //self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.activatedRecorder.trimmedRecordUrl error:nil];
-    NSError *error;
-    self.player = [[AVAudioPlayer alloc] initWithData:self.delegate.dataSoundRecorded error:&error];
-    [self.player setDelegate:self];
-    [self.player play];
-    [self buttonState:stop];
+    if (self.delegate.dataSoundRecorded) {
+        NSError *error;
+        self.player = [[AVAudioPlayer alloc] initWithData:self.delegate.dataSoundRecorded error:&error];
+        [self.player setDelegate:self];
+        [self.player play];
+        [self buttonState:stop];
+    } else if ([self.delegate respondsToSelector:@selector(playOtherSound)]) {
+        [self.delegate playOtherSound];
+    } else {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Play sound" message:@"No audio file available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [myAlertView show];
+    }
+
 }
+
+- (IBAction)swipeGestureRight:(UISwipeGestureRecognizer *)sender {
+    [self nextButtonState:NO];
+}
+
+
+- (IBAction)swipeGestureLeft:(id)sender {
+    [self nextButtonState:YES];
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
