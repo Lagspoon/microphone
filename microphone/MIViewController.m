@@ -5,129 +5,217 @@
 //  Created by Olivier Delecueillerie on 28/01/2014.
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
+//
+//
 
 #import "MIViewController.h"
+#import "MIMicrophoneUI.h"
 
 @interface MIViewController ()
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *controlStop;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *controlPlay;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *controlRecord;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+enum mode
+{
+    play = 0,
+    stop = 1,
+    record = 2,
+    delete = 3,
+};
 
+@property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UISwitch *switchControl;
+
+@property (nonatomic) enum mode mode;
 @property (strong, nonatomic) AVAudioPlayer *player;
-@property (strong, nonatomic) AVAudioRecorder *recorder;
-
 @end
 
 @implementation MIViewController
 
+
++ (MIViewController *) instantiateInitialViewControllerWithMicrophoneDelegate:(id)delegate {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MIViewController *viewController = [storyboard instantiateInitialViewController];
+    viewController.delegate = delegate;
+    return viewController;
+}
+
+
+- (IBAction)switchEditing:(UISwitch *)sender {
+    self.editing = sender.on;
+}
+
+//setter of the editing property
+- (void) setEditing:(BOOL)editing {
+    if (editing) {
+        [self buttonState:record];
+    }
+    else {
+        [self buttonState:play];
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// VC LIFECYCLE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Disable Stop/Play button when application launches
-    [self.controlStop setEnabled:NO];
-    [self.controlPlay setEnabled:NO];
-
-    // Set the audio file
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    //switch controle is used for dev and test purpose only
+    self.switchControl.hidden = YES;
+    
+    //init the default state of the button
+    if (self.delegate.editing) {
+        [self buttonState:record];
+    } else {
+        [self buttonState:play];
+    }
 
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-
-    // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-
-    // Initiate and prepare the recorder
-    self.recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
-    self.recorder.delegate = self;
-    self.recorder.meteringEnabled = YES;
-    [self.recorder prepareToRecord];
-
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimerCallback:) userInfo:nil repeats:YES ];
-
 }
 
 
 
-- (void)levelTimerCallback:(NSTimer *)timer
-{
-    [self.recorder updateMeters];
-    float peak = [self.recorder peakPowerForChannel:0];
-    float value = pow(10, (peak/10));
-    [self.progressView setProgress:(value*10) animated:YES];
-   }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)controlStop:(id)sender {
-    [self.recorder stop];
-
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setActive:NO error:nil];
-
-}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CONTROL
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-- (IBAction)controlPlay:(id)sender {
-    if (!self.recorder.recording){
-        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
-        [self.player setDelegate:self];
-        [self.player play];
+- (void) buttonState:(NSUInteger) state {
+    [self.button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    switch (state) {
+        case 0:
+        {
+            //play
+            self.mode = play;
+            [self.button setImage:[UIImage imageNamed:@"buttonPlay"] forState:UIControlStateNormal];
+            [self.button addTarget:self action:@selector(controlPlay:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case 1:
+        {
+            //stop playing
+            self.mode = stop;
+            [self.button setImage:[UIImage imageNamed:@"buttonStop64"] forState:UIControlStateNormal];
+            [self.button addTarget:self action:@selector(controlStop:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case 2:
+        {
+            //activated recorder
+            self.mode = record;
+            [self.button setImage:[UIImage imageNamed:@"microphone64"] forState:UIControlStateNormal];
+            [self.button addTarget:self action:@selector(controlRecord:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case 3:
+        {
+            //delete
+            self.mode = delete;
+            [self.button setImage:[UIImage imageNamed:@"buttonBin"] forState:UIControlStateNormal];
+            [self.button addTarget:self action:@selector(deleteRecord:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+            
+        default:
+        {
+            break;
+        }
     }
+}
+
+- (void) nextButtonState:(BOOL) next {
+    NSArray * modeAvailaible;
+    
+    if (self.delegate.editing) {
+        modeAvailaible = @[[NSNumber numberWithInt:0], [NSNumber numberWithInt:2], [NSNumber numberWithInt:3]];
+    } else {
+        modeAvailaible = @[[NSNumber numberWithInt:0]];
+    }
+    
+    NSUInteger index = [modeAvailaible indexOfObject:[NSNumber numberWithInt:self.mode]];
+    NSInteger indexNext;
+    if (next) {
+        indexNext = (index +1 ) %[modeAvailaible count];
+        
+    } else {
+        indexNext = index - 1 ;
+        if (indexNext < 0) {
+            indexNext = ([modeAvailaible count]-1);
+        }
+    }
+    NSUInteger newState = [[modeAvailaible objectAtIndex:indexNext] integerValue];
+    
+    [self buttonState:newState];
+}
+
+- (void) deleteRecord:(id) sender {
+    self.dataSoundRecorded = nil;
+    self.delegate.dataSoundRecorded = nil;
 }
 
 - (IBAction)controlRecord:(id)sender {
-    // Stop the audio player before recording
-    if (self.player.playing) {
-        [self.player stop];
-    }
-
-    if (!self.recorder.recording) {
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
-
-        // Start recording
-        [self.recorder record];
-        self.controlRecord.image = [UIImage imageNamed:@"6.png"];
-
-    } else {
-
-        // Pause recording
-        [self.recorder pause];
-        self.controlRecord.image = [UIImage imageNamed:@"9.png"];
-
-    }
-    [self.controlStop setEnabled:YES];
-    [self.controlPlay setEnabled:NO];
+//open MIMicrophone
+    MIMicrophoneUI *microphoneVC = (MIMicrophoneUI *) [self.storyboard instantiateViewControllerWithIdentifier:@"microphone"];
+    microphoneVC.delegate = self;
+    [self presentViewController:microphoneVC animated:YES completion:^{
+        //code
+    }];
 }
 
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
-    self.controlRecord.image = [UIImage imageNamed:@"9.png"];
+- (IBAction)controlStop:(id)sender {
+    [self.player stop];
+    [self buttonState:play];
+}
 
-    [self.controlStop setEnabled:NO];
-    [self.controlPlay setEnabled:YES];
+- (IBAction)controlPlay:(id)sender {
+    //self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.activatedRecorder.trimmedRecordUrl error:nil];
+    if (self.delegate.dataSoundRecorded) {
+        NSError *error;
+        self.player = [[AVAudioPlayer alloc] initWithData:self.delegate.dataSoundRecorded error:&error];
+        [self.player setDelegate:self];
+        [self.player play];
+        [self buttonState:stop];
+    } else if ([self.delegate respondsToSelector:@selector(playOtherSound)]) {
+        [self.delegate playOtherSound];
+    } else {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Play sound" message:@"No audio file available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [myAlertView show];
+    }
+
+}
+
+- (IBAction)swipeGestureRight:(UISwipeGestureRecognizer *)sender {
+    [self nextButtonState:NO];
+}
+
+
+- (IBAction)swipeGestureLeft:(id)sender {
+    [self nextButtonState:YES];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AVAudio Player & Recorder delegate
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void) microphoneRecorderDidFinishRecording {
+    self.delegate.dataSoundRecorded = self.dataSoundRecorded;
+    if ([self.delegate respondsToSelector:@selector(microphonePlayerDidFinishRecording)]) {
+        [self.delegate microphonePlayerDidFinishRecording];
+    }
+
 }
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Done"
-                                                    message: @"Finish playing the recording!"
-                                                   delegate: nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    [self buttonState:play];
 }
 @end
